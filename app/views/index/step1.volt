@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-5"></div>
                 <div class="col-lg-2">
-                    <p><?php $this->flashSession->output() ?></p>
+                    <p>{{ flashSession.output() }}</p>
                     {{ form('step2', 'method': 'post') }}
                         <label>Fullname</label>
                         {{ text_field("fullname", "size": 50, "required": true, "autofocus": true, "placeholder": "Bruce Willis", "value": '') }}

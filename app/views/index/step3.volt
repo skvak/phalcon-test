@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-5"></div>
                 <div class="col-lg-2">
-                    <p><?php $this->flashSession->output() ?></p>
+                    <p>{{ flashSession.output() }}</p>
                     {{ form('register', 'method': 'post') }}
                         <label>Interests</label>
                         {{ text_field("interests", "size": 50, "required": true, "placeholder": "Your interests", "value": '') }}
