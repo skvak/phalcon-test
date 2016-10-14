@@ -24,45 +24,9 @@ class IndexController extends ControllerBase
                 return $this->view->pick("index/step1");
             case 2:
                 if ($this->request->isPost()) {
-                    $validation1 = new Phalcon\Validation();
+                    $validation = new validationStep1();
 
-                    $validation1->add(
-                        "fullname",
-                        new PresenceOf(
-                            [
-                                "message" => "The fullname is required",
-                            ]
-                        )
-                    );
-
-                    $validation1->add(
-                        "email",
-                        new PresenceOf(
-                            [
-                                "message" => "The e-mail is required",
-                            ]
-                        )
-                    );
-
-                    $validation1->add(
-                        "email",
-                        new Email(
-                            [
-                                "message" => "The e-mail is not valid",
-                            ]
-                        )
-                    );
-
-                    $validation1->add(
-                        "password",
-                        new PresenceOf(
-                            [
-                                "message" => "The password is required",
-                            ]
-                        )
-                    );
-
-                    $messages = $validation1->validate($_POST);
+                    $messages = $validation->validate($_POST);
 
                     if (count($messages)) {
                         foreach ($messages as $message){
@@ -88,28 +52,9 @@ class IndexController extends ControllerBase
 
             case 3:
                 if ($this->request->isPost()) {
+                    $validation = new validationStep2();
 
-                    $validation2 = new Phalcon\Validation();
-
-                    $validation2->add(
-                        "city",
-                        new PresenceOf(
-                            [
-                                "message" => "The city is required",
-                            ]
-                        )
-                    );
-
-                    $validation2->add(
-                        "address",
-                        new PresenceOf(
-                            [
-                                "message" => "The address is required",
-                            ]
-                        )
-                    );
-
-                    $messages = $validation2->validate($_POST);
+                    $messages = $validation->validate($_POST);
 
                     if (count($messages)) {
                         foreach ($messages as $message){
@@ -137,18 +82,9 @@ class IndexController extends ControllerBase
     {
         if ($this->request->isPost())
         {
-            $validation3 = new Phalcon\Validation();
+            $validation = validationStep3();
 
-            $validation3->add(
-                "interests",
-                new PresenceOf(
-                    [
-                        "message" => "The interests is required",
-                    ]
-                )
-            );
-
-            $messages = $validation3->validate($_POST);
+            $messages = $validation->validate($_POST);
 
             if (count($messages)) {
                 foreach ($messages as $message){
