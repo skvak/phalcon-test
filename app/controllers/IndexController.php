@@ -15,12 +15,11 @@ class IndexController extends ControllerBase
 
     public function stepAction()
     {
-        null !== $this->request->getPost("step") ? $step = $this->request->getPost("step") : $step = 1;
+        $step = null !== $this->request->getPost("step") ?  $this->request->getPost("step") : 1;
 
         switch ($step) {
             case 1:
-                $this->view->pick("index/step1");
-                break;
+                return $this->view->pick("index/step1");
             case 2:
                 if ($this->request->isPost()) {
                     $validation1 = new Phalcon\Validation();
@@ -80,8 +79,7 @@ class IndexController extends ControllerBase
 
                     $this->session->set("user", $user);
 
-                    $this->view->pick("index/step2");
-                    break;
+                    return $this->view->pick("index/step2");
                 }
 
                 return $this->response->redirect("step1");
@@ -126,8 +124,7 @@ class IndexController extends ControllerBase
                     $user->address = $this->request->getPost("address");
                     $this->session->set("user", $user);
 
-                    $this->view->pick("index/step3");
-                    break;
+                    return $this->view->pick("index/step3");
                 }
 
                 return $this->response->redirect("step2");
@@ -169,7 +166,7 @@ class IndexController extends ControllerBase
             $this->session->remove("user");
         }
 
-        $this->view->pick("index/finish");
+        return $this->view->pick("index/finish");
     }
 }
 
