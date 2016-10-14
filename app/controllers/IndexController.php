@@ -14,6 +14,9 @@ class IndexController extends ControllerBase
 
     public function stepAction()
     {
+        if ($this->session->get("user")){
+            $this->session->remove("user");
+        }
         $step = null !== $this->request->getPost("step") ?  $this->request->getPost("step") : 1;
 
         switch ($step) {
