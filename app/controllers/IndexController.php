@@ -1,7 +1,6 @@
 <?php
 
 use Phalcon\DI;
-
 use Phalcon\Validation\Validator\Email;
 use Phalcon\Validation\Validator\PresenceOf;
 

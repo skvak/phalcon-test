@@ -71,7 +71,7 @@ class Users extends \Phalcon\Mvc\Model
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Users[]
+     * @return $this[]
      */
     public static function find($parameters = null)
     {
