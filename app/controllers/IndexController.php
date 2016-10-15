@@ -23,7 +23,7 @@ class IndexController extends ControllerBase
                 }
                 return $this->view->pick("index/step1");
             case 2:
-                if ($this->request->isPost()) {
+                if ($this->request->isPost() && $this->security->checkToken()) {
                     $validation = new validationStep1();
 
                     $messages = $validation->validate($_POST);
@@ -51,7 +51,7 @@ class IndexController extends ControllerBase
                 return $this->response->redirect("step1");
 
             case 3:
-                if ($this->request->isPost()) {
+                if ($this->request->isPost() && $this->security->checkToken()) {
                     $validation = new validationStep2();
 
                     $messages = $validation->validate($_POST);
@@ -80,7 +80,7 @@ class IndexController extends ControllerBase
 
     public function registrationAction()
     {
-        if ($this->request->isPost())
+        if ($this->request->isPost() && $this->security->checkToken())
         {
             $interests = $this->request->getPost("interests");
 

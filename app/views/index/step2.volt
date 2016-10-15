@@ -19,6 +19,8 @@
                         {{ text_field("address", "size": 50, "required": true, "placeholder": "Your address", "value": '') }}
 
                         {{ hidden_field("step", "value": 3) }}
+                        <input type="hidden" name="{{ security.getTokenKey() }}"
+                           value="{{ security.getToken() }}"/>
                         <br><br>
                         {{ submit_button('Next step') }}
                     {{ endForm() }}
