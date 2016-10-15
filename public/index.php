@@ -4,32 +4,32 @@ try {
 
     //Register an autoloader
     $loader = new \Phalcon\Loader();
-    $loader->registerDirs(array(
+    $loader->registerDirs([
         '../app/controllers/',
         '../app/models/',
         '../app/validations/'
-    ))->register();
+    ])->register();
 
     //Create a DI
     $di = new Phalcon\DI\FactoryDefault();
 
     //Setup the database service
     $di->set('db', function(){
-        return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+        return new \Phalcon\Db\Adapter\Pdo\Mysql([
             "host" => "localhost",
             "username" => "root",
             "password" => "dreamteam",
             "dbname" => "phalcon_test"
-        ));
+        ]);
     });
 
     //Registering Volt as template engine
     $di->set('view', function() {
         $view = new \Phalcon\Mvc\View();
         $view->setViewsDir('../app/views/');
-        $view->registerEngines(array(
+        $view->registerEngines([
             ".volt" => 'Phalcon\Mvc\View\Engine\Volt'
-        ));
+        ]);
         return $view;
     });
 
@@ -37,7 +37,7 @@ try {
      * Add routing capabilities
      */
     $di->set("router", function () {
-            require __DIR__ . "/../app/config/routes.php";
+            $router = require __DIR__ . "/../app/config/routes.php";
 
             return $router;
     });
@@ -49,7 +49,7 @@ try {
         return $url;
     });
 
-    // Начинаем сессию при первом запросе сервиса каким-либо компонентом
+    // Start session
     $di->set('session', function (){
         $session = new \Phalcon\Session\Adapter\Files();
         $session->start();
