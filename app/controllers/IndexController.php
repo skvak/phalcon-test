@@ -14,13 +14,13 @@ class IndexController extends ControllerBase
 
     public function stepAction()
     {
-        if ($this->session->get("user")){
-            $this->session->remove("user");
-        }
         $step = null !== $this->request->getPost("step") ?  $this->request->getPost("step") : 1;
 
         switch ($step) {
             case 1:
+                if ($this->session->get("user")){
+                    $this->session->remove("user");
+                }
                 return $this->view->pick("index/step1");
             case 2:
                 if ($this->request->isPost()) {
@@ -82,22 +82,24 @@ class IndexController extends ControllerBase
     {
         if ($this->request->isPost())
         {
-            $validation = validationStep3();
+            $interests = $this->request->getPost("interests");
 
-            $messages = $validation->validate($_POST);
-
-            if (count($messages)) {
-                foreach ($messages as $message){
-                    $errors[] = $message;
+            foreach ($interests as $interest)
+            {
+                if ($interest == null)
+                {
+                    $message = "The interests is required";
                 }
-                $errors = implode(',<br>', $errors);
-                $this->flashSession->error($errors);
+            }
 
-                return $this->response->redirect("step3");
+            if (isset($message))
+            {
+                $this->flashSession->error($message);
+                return $this->view->pick("index/step3");
             }
 
             $user = $this->session->get("user");
-            $user->interests = $this->request->getPost("interests");
+            $user->interests = implode(", ", $interests);
             $user->created_at = date("Y-m-d H:i:s");
             $user->save();
 
