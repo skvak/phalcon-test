@@ -1,7 +1,5 @@
 <?php
 
-//use Phalcon\Mvc\Model\Validator\Email as Email;
-
 class Users extends \Phalcon\Mvc\Model
 {
 
@@ -49,38 +47,15 @@ class Users extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var string
+     * @var integer
      */
     public $created_at;
 
     /**
      *
-     * @var string
+     * @var integer
      */
     public $updated_at;
-
-//    /**
-//     * Validations and business logic
-//     *
-//     * @return boolean
-//     */
-//    public function validation()
-//    {
-//        $this->validate(
-//            new Email(
-//                array(
-//                    'field'    => 'email',
-//                    'required' => true,
-//                )
-//            )
-//        );
-//
-//        if ($this->validationHasFailed() == true) {
-//            return false;
-//        }
-//
-//        return true;
-//    }
 
     /**
      * Returns table name mapped in the model.
