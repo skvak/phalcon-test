@@ -18,8 +18,7 @@
                         </div>
                         <input type="button" onclick="add_input()" value="Add field" /><br><br>
                         {{ hidden_field("step", "value": 3) }}
-                        <input type="hidden" name="{{ security.getTokenKey() }}"
-                           value="{{ security.getToken() }}"/>
+                        {{ hidden_field(security.getTokenKey(), "value": security.getToken()) }}
                         {{ submit_button('Register') }}
                     {{ endForm() }}
                 </div>

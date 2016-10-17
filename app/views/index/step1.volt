@@ -22,8 +22,7 @@
                         {{ password_field("password", "size": 50, "required": true, "placeholder": "Your password") }}
 
                         {{ hidden_field("step", "value": 2) }}
-                        <input type="hidden" name="{{ security.getTokenKey() }}"
-                           value="{{ security.getToken() }}"/>
+                        {{ hidden_field(security.getTokenKey(), "value": security.getToken()) }}
                         <br><br>
                         {{ submit_button('Next step') }}
                     {{ endForm() }}
